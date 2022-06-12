@@ -1,5 +1,5 @@
 from tkinter import *
-import busi
+import Database
 
 
 def clear_list():
@@ -13,7 +13,7 @@ def fill_list(books):
 
 tk = Tk()
 tk.geometry("800x800")
-tk.title("Library Application")
+tk.title("برنامه کتابخانه با دیتابیس و تینکر")
 
 # ===================== Labels ========================
 l1 = Label(tk, text="Title")
@@ -81,7 +81,7 @@ list1.bind("<<ListboxSelect>>", get_selected_row)
 
 def view_command():
     clear_list()
-    books = busi.view()
+    books = Database.view()
     fill_list(books)
 
 
@@ -91,7 +91,7 @@ b1.grid(row=2, column=3)
 
 def search_command():
     clear_list()
-    books = busi.search(title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
+    books = Database.search(title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
     fill_list(books)
 
 
@@ -100,7 +100,7 @@ b2.grid(row=3, column=3)
 
 
 def add_command():
-    busi.insert(title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
+    Database.insert(title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
     view_command()
 
 
@@ -109,7 +109,7 @@ b3.grid(row=4, column=3)
 
 
 def update_command():
-    busi.update(selected_book[0], title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
+    Database.update(selected_book[0], title_text.get(), author_text.get(), year_text.get(), isbn_text.get())
     view_command()
 
 
@@ -118,7 +118,7 @@ b4.grid(row=5, column=3)
 
 
 def delete_command():
-    busi.delete(selected_book[0])
+    Database.delete(selected_book[0])
     view_command()
 
 
